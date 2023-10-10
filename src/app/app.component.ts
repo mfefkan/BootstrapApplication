@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { CommonModule, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { Component, Inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `AppComponent<br>
+  
+  <a routerLink="">Home</a> | <a routerLink="about">About</a> | <a routerLink="product/2">Product</a> <br>
+  <router-outlet>
+  `,
+  standalone: true,
+  imports:[RouterModule,NgSwitchDefault,NgSwitchCase,NgSwitch]
 })
 export class AppComponent {
-  title = 'BootstrapApplication';
+  constructor(@Inject("url") private url : string) {
+    console.log(url);
+    
+  }
 }
